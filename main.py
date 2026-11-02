@@ -1,14 +1,14 @@
 import cv2
 
-cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+cap = cv2.VideoCapture(0)
 
 if not cap.isOpened():
-    print("Камера не найдена")
+    print("Camera not found")
     exit()
 
 print("S to save")
 print("Q to exit")
-
+counter = 11
 while True:
     ret, frame = cap.read()
 
@@ -20,8 +20,9 @@ while True:
     key = cv2.waitKey(1) & 0xFF
 
     if key == ord("s"):
-        cv2.imwrite("foto.png", frame)
-        print("gespeichert!")
+        cv2.imwrite(f"foto{counter}.png", frame)
+        print("saved")
+        counter += 1
 
     elif key == ord("q"):
         break
